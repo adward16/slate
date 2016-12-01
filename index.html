@@ -4,10 +4,8 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Project 1 API Documentation and References</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -16,11 +14,11 @@
   background-color: #272822;
 }
 .highlight .err {
-  color: #151515;
-  background-color: #ac4142;
+  color: #272822;
+  background-color: #f92672;
 }
 .highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #505050;
+  color: #75715e;
 }
 .highlight .cp {
   color: #f4bf75;
@@ -29,45 +27,45 @@
   color: #f4bf75;
 }
 .highlight .o, .highlight .ow {
-  color: #d0d0d0;
+  color: #f8f8f2;
 }
 .highlight .p, .highlight .pi {
-  color: #d0d0d0;
+  color: #f8f8f2;
 }
 .highlight .gi {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .gd {
-  color: #ac4142;
+  color: #f92672;
 }
 .highlight .gh {
-  color: #6a9fb5;
-  background-color: #151515;
+  color: #66d9ef;
+  background-color: #272822;
   font-weight: bold;
 }
 .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #aa759f;
+  color: #ae81ff;
 }
 .highlight .kc {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .kt {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .kd {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .sr {
-  color: #75b5aa;
+  color: #a1efe4;
 }
 .highlight .si {
-  color: #8f5536;
+  color: #cc6633;
 }
 .highlight .se {
-  color: #8f5536;
+  color: #cc6633;
 }
 .highlight .nn {
   color: #f4bf75;
@@ -79,30 +77,30 @@
   color: #f4bf75;
 }
 .highlight .na {
-  color: #6a9fb5;
+  color: #66d9ef;
 }
 .highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .ss {
-  color: #90a959;
+  color: #a6e22e;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;python&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" />
+        <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img src="images/logo.png" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
@@ -121,161 +119,254 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the API documentation for COSC 6377 Computer Networks Project 1. The purpose of this document is to
+explain how the project works and to provide a detailed explanation on the class protocol that was invented and
+how it is used. Also, this document will highlight what worked with the project, areas for improvement, and final thoughts
+on the submitted package in its entirety.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<h1 id="services">Services</h1>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>The services offered by this project include the following:</p>
 
-<h1 id="authentication">Authentication</h1>
+<ul>
+<li><p>file upload from client to shard and vice-versa</p></li>
+<li><p>file download from client to shard and vice-versa</p></li>
+<li><p>client inquiry for file on a shard</p></li>
+<li><p>client inquiry on number of bytes stored by shard</p></li>
+<li><p>client request for metadata file of shard</p></li>
+</ul>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<h1 id="message-protocol">Message Protocol</h1>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>Example of a message being formatted prior to being sent; the query in this case is for specific bytes of a file</p>
 </blockquote>
+<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="nt">"Message-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATA"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yourfilename.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"BytesFrom"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"BytesTo"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base64-file-data"</span><span class="p">}</span><span class="w">
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+</span></code></pre>
+<blockquote>
+<p>Code to open a file, read its contents and encode it in base64, it then populates a Python dictionary
+with the the key:value pairs it plans to send in the messages. The Python dictionary is then converted to
+ a JSON string object via the <em>json.dumps()</em> method. The JSON string is then sent over the TCP socket.</p>
+</blockquote>
+<pre class="highlight python"><code>    <span class="kn">import</span> <span class="nn">json</span>
+    <span class="kn">import</span> <span class="nn">base64</span>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+    <span class="c"># Creates an empty python dictionary</span>
+    <span class="n">jstring</span> <span class="o">=</span> <span class="p">{}</span>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+    <span class="k">try</span><span class="p">:</span>
+    <span class="c"># Open the file to be sent</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'/path/to/file/yourfile.jpg'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">"File could not be found"</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="s">"Unable to locate file, request denied"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+    <span class="c"># Read file data to be sent</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="c"># Encodes file data using base64</span>
+        <span class="n">encoded_msg</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="c"># Populate the python dictionary with the following values</span>
+        <span class="n">jstring</span><span class="p">[</span><span class="s">'Message-Type'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'DATA'</span>
+        <span class="n">jstring</span><span class="p">[</span><span class="s">'Filename'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'yourfilename.jpg'</span>
+        <span class="n">jstring</span><span class="p">[</span><span class="s">'BytesFrom'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'0'</span>
+        <span class="n">jstring</span><span class="p">[</span><span class="s">'BytesTo'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'100'</span>
+        <span class="n">jstring</span><span class="p">[</span><span class="s">'Data'</span><span class="p">]</span> <span class="o">=</span> <span class="n">encoded_msg</span>
+    <span class="c"># Convert python dictionary to JSON string object</span>
+        <span class="n">jsend</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">jstring</span><span class="p">)</span>
 
+    <span class="c"># Send JSON string object over TCP socket called "client"</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">jsend</span><span class="p">)</span>
+</code></pre>
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+This is just an example of one of the possible ways to create a message to be sent between a sender and receiver. The
+message content can vary, depending on what the message type is.
 </aside>
 
-<h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all kittens.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
+<p>The messages transferred between the client and shards are formatted according to JSON objects. They are then sent as
+a JSON string via TCP sockets. Messages consist of key-value pairs where the sender defines the values for each key. The
+receiver then processes the request(s) based on what key-value pairs it receives. Possible message keys and associated
+values include the following:</p>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
+<th>Message Key</th>
+<th>Key Value</th>
+<th>Purpose</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>&lsquo;Message-Type&rsquo;</td>
+<td>&#39;BYTESTORED&rsquo;</td>
+<td>Query for the total number of bytes available on the shard</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td></td>
+<td>&#39;FILEINFO&rsquo;</td>
+<td>Query for information pertaining to a requested file, if the shard has information for it</td>
+</tr>
+<tr>
+<td></td>
+<td>&#39;REQUESTDATA&rsquo;</td>
+<td>Query for specific bytes of a file</td>
+</tr>
+<tr>
+<td></td>
+<td>&#39;BACKUPDATA&rsquo;</td>
+<td>Query for specific bytes of a file to be a sent to other shards in case of failure</td>
+</tr>
+<tr>
+<td></td>
+<td>&#39;DATA&rsquo;</td>
+<td>Query for specific bytes of a file to be sent to a shard or client</td>
+</tr>
+<tr>
+<td></td>
+<td>&#39;REPORT&rsquo;</td>
+<td>Query shard for report of what it stores and available storage, shard sends metadata file</td>
+</tr>
+<tr>
+<td>&#39;BytesFrom&rsquo;</td>
+<td><em>integer value</em></td>
+<td>Holds the value of the starting byte for a range of bytes sent for a file</td>
+</tr>
+<tr>
+<td>&#39;BytesTo&rsquo;</td>
+<td><em>integer value</em></td>
+<td>Holds the value of the ending byte for a range of bytes sent for a file</td>
+</tr>
+<tr>
+<td>&#39;Filename&rsquo;</td>
+<td><em>character value</em></td>
+<td>Holds the name of the file being queried from the sender to receiver and vice-versa</td>
+</tr>
+<tr>
+<td>&#39;Data&rsquo;</td>
+<td><em>file data</em></td>
+<td>Holds the data for a file encoded in base64 for compression in data transmission</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+<h1 id="shard-implementations">Shard Implementations</h1>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>Each shard is implemented using a class called <em>ThreadedServer</em>. When an instance of this class is created, it creates a
+new socket for a connection to either a client or another shard. Data is sent and received using <em>ThreadedServer</em> methods.
+Each method will be outlined in the following section.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<h2 id="threadedserver-class">ThreadedServer class</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<h3 id="listen">listen( )</h3>
 
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Code snippet for listen() method of ThreadedServer class</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight python"><code>
+    <span class="k">class</span> <span class="nc">ThreadedServer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-<p>This endpoint retrieves a specific kitten.</p>
+    <span class="c"># Assumes class has been initialized already</span>
 
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+        <span class="k">def</span> <span class="nf">listen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">"An error occurred listening for incoming connections "</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">"******* Listening on port </span><span class="si">%</span><span class="s">d. Waiting for clients to connect *******"</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span>
+                <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                    <span class="n">client</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+                    <span class="k">print</span> <span class="s">"***** Connection from "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="o">+</span> <span class="s">"*****"</span>
+                    <span class="n">client</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+                    <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">newConn</span><span class="p">,</span><span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">client</span><span class="p">,</span><span class="n">address</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">jstring</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">mpath</span><span class="p">))</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</code></pre>
+<p>When a socket is created, this method allows it to listen for incoming connections. Once a connection is made and accepted,
+the socket then creates a new thread for the connection. Depending on the service that the client is requesting, the shard
+will either send the requested data to the shard or allow the client to upload a file and replicate halves of the files
+to other shards.</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="newconn">newConn( )</h3>
 
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p>Within this method, the shard handles the request of a client based on the type of message it has received. Each socket
+created by the <em>ThreadedServer</em> class stays in listening mode, waiting for a client to connect and give it some task to
+perform. It accepts the IP address of the client, file path for the file to be uploaded/downloaded to or from, an empty
+python dictionary, and the file path to the metadata file.</p>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h3 id="replicate">replicate( )</h3>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
+<p>Takes any data that the shard has received and splits it in half. Each half is then sent to the other shards as back-up
+data. This is to accommodate for the event that a shard fails.</p>
+
+<h3 id="metadata-file">Metadata File</h3>
+
+<p>A text file that stores information regarding files that are uploaded to the shard. Includes files uploaded from the client
+and parts of files uploaded from other shards. Also stores the total amount of storage left on shard (in bytes). The
+numerical value at the beginning of the metadata file is the current storage size. Initial storage size is the last
+numerical value before the section detailing metadata for an uploaded file starts.</p>
+
+<h1 id="client-implementation">Client Implementation</h1>
+
+<p>The client and its associated functionality is implemented in <em>ThreadedClient</em> class. Each instance creates a socket
+connection (one for each shard).</p>
+
+<h2 id="threadedclient-class">ThreadedClient class</h2>
+
+<h3 id="client_conn">client_conn( )</h3>
+
+<p>This method connects a client socket to a shard. If connecting to all shards is successful, then the <em>load_balancing()</em>
+method is called.</p>
+
+<h3 id="shard_size">shard_size( )</h3>
+
+<p>Queries each shard to see how much storage it has available. Also creates a dictionary called &#39;shards&rsquo; where each key is
+a shard name and the associated value is the amount of storage available.</p>
+
+<h3 id="load_balancing">load_balancing( )</h3>
+
+<p>This method determines how big of a portion of a file to send to each shard depending on the amount of storage that is
+available.</p>
+
+<h3 id="shard_service">shard_service( )</h3>
+
+<p>Determines whether a client is uploading a file or downloading a file from a shard.</p>
+
+<h3 id="get_data">get_data( )</h3>
+
+<p>Formats a message to send a request for downloading specific bytes of a file to a shard.</p>
+
+<h3 id="send_data">send_data( )</h3>
+
+<p>Formats a message to send a request for uploading specific bytes of a file to a shard.</p>
+
+<h3 id="shard_report">shard_report( )</h3>
+
+<p>Formats a message to send a request on the information stored by the shard, shard replies by sending its metadata file.</p>
+
+<h1 id="monitor">Monitor</h1>
+
+<p>The purpose of the monitor is to query each shard to see what it&rsquo;s total storage is. The monitor then writes this data to
+a csv file that can be exported into Microsoft Excel. See <a href='https://github.com/tripit/slate'>Monitor Documentation</a></p>
+
+<h1 id="known-limitations">Known Limitations</h1>
+
+<h2 id="load-balancing">Load Balancing</h2>
+
+<p>As of right now, the current load balancing algorithm utilized by the client only is capable of splitting a file into
+equal portions and allowing each of thee portions to be uploaded to a shard. The total storage size of each shard does
+not grow towards an equal size over time. I had trouble coming up with an algorithm that successfully balanced the total
+storage so that it would be equal on each shard. Future work to improve this could be done (if given more time). Due to
+this limitation, I left the load balancing functionality as is so that file uploads and downloads from the client to a
+shard still could be accommodated.</p>
+
+<h2 id="shard-failure">Shard Failure</h2>
+
+<p>The project is unable to accommodate the failure of a shard. Although, should a shard fail the other two shards do have
+replicas of the data from the failed shard but I was unsuccessful in coming up with a method to aggregate the distributed
+data. The approach that was thought of, but I was unable to implement was having a python dictionary to track how many bytes
+a shard has for a requested file. However, getting the data to be downloaded in the correct order was troublesome.</p>
 
           <h1 id="errors">Errors</h1>
 
@@ -338,8 +429,6 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
                 <a href="#" data-language-name="python">python</a>
           </div>
       </div>
